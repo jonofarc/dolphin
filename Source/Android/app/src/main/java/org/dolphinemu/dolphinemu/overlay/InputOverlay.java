@@ -940,7 +940,10 @@ public final class InputOverlay extends SurfaceView implements OnTouchListener
     // This will dictate where on the screen (and the what the size) the InputOverlayDrawableButton will be.
     overlayDrawable.setBounds(drawableX, drawableY, drawableX + width, drawableY + height);
 
-    // This will add the analog trigger function
+    // Need to set the image's position
+    overlayDrawable.setPosition(drawableX, drawableY);
+
+    // Set the button secondary function if it exist such as analog triggers
     if (SECONDARY_FUNCTION_BUTTONS.contains(buttonId) && buttonId >= 0)
     {
       final Bitmap secondaryPressedStateBitmap =
@@ -952,9 +955,6 @@ public final class InputOverlay extends SurfaceView implements OnTouchListener
       secondaryBounds.bottom = secondaryBounds.bottom - secondaryBounds.height()/2;
       overlayDrawable.setSecondaryBounds(secondaryBounds);
     }
-
-    // Need to set the image's position
-    overlayDrawable.setPosition(drawableX, drawableY);
 
     return overlayDrawable;
   }
